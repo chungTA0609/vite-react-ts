@@ -27,16 +27,19 @@ export default function FormComponent() {
   const { productList } = useAppSelector((state) => state.productList);
   const dispatch = useAppDispatch();
   function handleModal(openState: boolean) {
-    setOpen((e) => (e = openState));
+    setOpen(openState);
     if (!openState) {
       handleError(false);
     }
   }
   function handleError(errorState: boolean) {
-    setIsError((e) => (e = errorState));
+    setIsError(errorState);
   }
-  function handleItemChange(key: string, e: ChangeEvent) {
-    setInputForm({ ...inputForm, [key]: e.target.value });
+  function handleItemChange(key: string, e: ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) {
+    setInputForm({
+      ...inputForm,
+      [key]: e.target.value,
+    });
   }
   function handleSizeChange(index: number) {
     const newSize = [...sizes];

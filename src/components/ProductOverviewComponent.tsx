@@ -7,7 +7,9 @@ const ProductOverviewComponent = () => {
   const { productList } = useAppSelector((state) => state.productList);
   return (
     <ProductOverviews
-      product={productList.find((e) => e.id === parseInt(params.productId))}
+      product={productList.find(
+        (e) => e.id === parseInt(params.productId ?? "0")
+      )}
     />
   );
 };
