@@ -229,13 +229,13 @@ export default function FormComponent() {
                     />
                     <div className="mt-4 flex text-sm leading-6 text-gray-600">
                       <label
-                        htmlFor="file-upload"
+                        htmlFor="cover-photo"
                         className="relative cursor-pointer rounded-md bg-white font-semibold text-indigo-600 focus-within:outline-none focus-within:ring-2 focus-within:ring-indigo-600 focus-within:ring-offset-2 hover:text-indigo-500"
                       >
                         <span>Upload a file</span>
                         <input
-                          id="file-upload"
-                          name="file-upload"
+                          id="cover-photo"
+                          name="cover-photo"
                           type="file"
                           className="sr-only"
                         />
@@ -264,13 +264,13 @@ export default function FormComponent() {
                     />
                     <div className="mt-4 flex text-sm leading-6 text-gray-600">
                       <label
-                        htmlFor="file-upload"
+                        htmlFor="overview-photo"
                         className="relative cursor-pointer rounded-md bg-white font-semibold text-indigo-600 focus-within:outline-none focus-within:ring-2 focus-within:ring-indigo-600 focus-within:ring-offset-2 hover:text-indigo-500"
                       >
                         <span>Upload a file</span>
                         <input
-                          id="file-upload"
-                          name="file-upload"
+                          id="overview-photo"
+                          name="overview-photo"
                           type="file"
                           className="sr-only"
                         />
@@ -349,15 +349,15 @@ export default function FormComponent() {
                             handleSizeChange(index);
                           }}
                           checked={item.inStock}
-                          id="comments"
-                          name="comments"
+                          id={item.name}
+                          name={item.name}
                           type="checkbox"
                           className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-600"
                         />
                       </div>
                       <div className="text-sm leading-6">
                         <label
-                          htmlFor="comments"
+                          htmlFor={item.name}
                           className="font-medium text-gray-900"
                         >
                           {item.name}
