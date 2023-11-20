@@ -8,7 +8,7 @@ import {
 } from "@heroicons/react/24/outline";
 
 import { change } from "../features/cart/cartSlice";
-import { useAppDispatch } from "../app/hook";
+import { useAppDispatch, useAppSelector } from "../app/hook";
 import { Link } from "react-router-dom";
 const navigation = {
   categories: [
@@ -146,6 +146,7 @@ function classNames(...classes: Array<string>) {
 
 export default function Header() {
   const [open, setOpen] = useState(false);
+  const { totalItem } = useAppSelector((state) => state.cart);
   const dispatch = useAppDispatch();
   return (
     <>
@@ -536,7 +537,7 @@ export default function Header() {
                       }}
                     />
                     <span className="ml-2 text-sm font-medium text-gray-700 group-hover:text-gray-800">
-                      0
+                      {totalItem}
                     </span>
                     <span className="sr-only">items in cart, view bag</span>
                   </a>

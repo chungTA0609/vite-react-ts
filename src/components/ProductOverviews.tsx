@@ -2,7 +2,7 @@ import { useState } from "react";
 import { StarIcon } from "@heroicons/react/20/solid";
 import { RadioGroup } from "@headlessui/react";
 import { useAppDispatch, useAppSelector } from "../app/hook";
-import { updateCart, updateSubtotal } from "../features/cart/cartSlice";
+import { updateCart, updateSubtotal, updateTotalItem } from "../features/cart/cartSlice";
 import { Link, useNavigate } from "react-router-dom";
 import { addProduct } from "../features/product/productListSlice";
 import Modal from "./Modal";
@@ -56,7 +56,13 @@ export default function ProductOverviews(props: { product: object }) {
     }
 
     const subtotal = calculateSubtotal(newProductQuantity);
+    const initialValue = 0;
+    const totalCount = newProductQuantity.reduce(
+      (accumulator, currentValue) => accumulator + currentValue.quantity,
+      initialValue
+    );
     dispatch(updateSubtotal(subtotal));
+    dispatch(updateTotalItem(totalCount));
     dispatch(updateCart(newProductQuantity));
   };
   const removeCart = (id: number) => {
@@ -65,7 +71,13 @@ export default function ProductOverviews(props: { product: object }) {
     );
 
     const subtotal = calculateSubtotal(newProductQuantity);
+    const initialValue = 0;
+    const totalCount = newProductQuantity.reduce(
+      (accumulator, currentValue) => accumulator + currentValue.quantity,
+      initialValue
+    );
     dispatch(updateSubtotal(subtotal));
+    dispatch(updateTotalItem(totalCount));
     dispatch(updateCart(newProductQuantity));
   };
   const removeProduct = (id: number) => {

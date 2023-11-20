@@ -3,12 +3,14 @@ interface CartState {
   open: boolean;
   cartProduct: Array<object>;
   subtotal: number;
+  totalItem: number;
 }
 
 const initialState: CartState = {
   open: false,
   cartProduct: [],
   subtotal: 0,
+  totalItem: 0,
 };
 
 export const cartSlice = createSlice({
@@ -24,7 +26,11 @@ export const cartSlice = createSlice({
     updateSubtotal: (state, action) => {
       state.subtotal = action.payload;
     },
+    updateTotalItem: (state, action) => {
+      state.totalItem = action.payload;
+    },
   },
 });
 
-export const { change, updateCart, updateSubtotal } = cartSlice.actions;
+export const { change, updateCart, updateSubtotal, updateTotalItem } =
+  cartSlice.actions;

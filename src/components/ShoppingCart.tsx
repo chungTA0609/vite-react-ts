@@ -2,7 +2,12 @@ import { Fragment } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import { XMarkIcon } from "@heroicons/react/24/outline";
 import { useAppDispatch, useAppSelector } from "../app/hook";
-import { change, updateCart, updateSubtotal } from "../features/cart/cartSlice";
+import {
+  change,
+  updateCart,
+  updateSubtotal,
+  updateTotalItem,
+} from "../features/cart/cartSlice";
 import { Link } from "react-router-dom";
 import { calculateSubtotal } from "../helpers/helpers";
 
@@ -15,7 +20,13 @@ export default function ShoppingCart() {
     );
 
     const subtotal = calculateSubtotal(newProductQuantity);
+    const initialValue = 0;
+    const totalCount = newProductQuantity.reduce(
+      (accumulator, currentValue) => accumulator + currentValue.quantity,
+      initialValue
+    );
     dispatch(updateSubtotal(subtotal));
+    dispatch(updateTotalItem(totalCount));
     dispatch(updateCart(newProductQuantity));
   };
   return (
