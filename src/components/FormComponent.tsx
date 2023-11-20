@@ -3,6 +3,7 @@ import Modal from "./Modal";
 import { ChangeEvent, useState } from "react";
 import { addProduct } from "../features/product/productListSlice";
 import { useAppDispatch, useAppSelector } from "../app/hook";
+import { useNavigate } from "react-router-dom";
 const sizeArray = [
   { name: "XXS", inStock: false },
   { name: "XS", inStock: false },
@@ -17,7 +18,7 @@ export default function FormComponent() {
   const [open, setOpen] = useState(false);
   const [isError, setIsError] = useState(false);
   const [inputForm, setInputForm] = useState({
-    productId: 0,
+    productId: "0",
     description: "",
     detail: "",
     name: "",
@@ -26,6 +27,8 @@ export default function FormComponent() {
   const [sizes, setSizes] = useState(sizeArray);
   const { productList } = useAppSelector((state) => state.productList);
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
+
   function handleModal(openState: boolean) {
     setOpen(openState);
     if (!openState) {
@@ -35,7 +38,10 @@ export default function FormComponent() {
   function handleError(errorState: boolean) {
     setIsError(errorState);
   }
-  function handleItemChange(key: string, e: ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) {
+  function handleItemChange(
+    key: string,
+    e: ChangeEvent<HTMLTextAreaElement | HTMLInputElement>
+  ) {
     setInputForm({
       ...inputForm,
       [key]: e.target.value,
@@ -57,7 +63,7 @@ export default function FormComponent() {
       const newListProduct = [...productList];
 
       newListProduct.push({
-        id: `${newProductObj.productId}`,
+        id: parseInt(newProductObj.productId ?? "0"),
         name: newProductObj.name,
         price: `$${newProductObj.price}`,
         href: `${newProductObj.productId}`,
@@ -112,6 +118,7 @@ export default function FormComponent() {
       });
       dispatch(addProduct(newListProduct));
       handleModal(false);
+      navigate("/product");
     } catch (error) {
       console.log(error);
 
