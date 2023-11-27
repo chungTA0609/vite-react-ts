@@ -1,10 +1,19 @@
 import { PhotoIcon } from "@heroicons/react/24/solid";
 import Modal from "./Modal";
-import { ChangeEvent, useState } from "react";
+import { useEffect, useState } from "react";
 import { addProduct } from "../features/product/productListSlice";
-
-import { useNavigate } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../app/store/hook";
+import { useNavigate } from "react-router-dom";
+import { useForm, SubmitHandler } from "react-hook-form";
+
+interface NewProductData {
+  productId: string;
+  description: string;
+  details: string;
+  name: string;
+  price: string;
+}
+
 const sizeArray = [
   { name: "XXS", inStock: false },
   { name: "XS", inStock: false },
@@ -18,18 +27,21 @@ const sizeArray = [
 export default function FormComponent() {
   const [open, setOpen] = useState(false);
   const [isError, setIsError] = useState(false);
-  const [inputForm, setInputForm] = useState({
-    productId: "0",
-    description: "",
-    detail: "",
-    name: "",
-    price: "",
-  });
   const [sizes, setSizes] = useState(sizeArray);
   const { productList } = useAppSelector((state) => state.productList);
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors, touchedFields },
+  } = useForm<NewProductData>();
 
+  useEffect(() => {
+    console.log();
+    console.log(touchedFields, "touch");
+    console.log(errors, "error");
+  }, [touchedFields, errors]);
   function handleModal(openState: boolean) {
     setOpen(openState);
     if (!openState) {
@@ -39,15 +51,6 @@ export default function FormComponent() {
   function handleError(errorState: boolean) {
     setIsError(errorState);
   }
-  function handleItemChange(
-    key: string,
-    e: ChangeEvent<HTMLTextAreaElement | HTMLInputElement>
-  ) {
-    setInputForm({
-      ...inputForm,
-      [key]: e.target.value,
-    });
-  }
   function handleSizeChange(index: number) {
     const newSize = [...sizes];
 
@@ -55,12 +58,17 @@ export default function FormComponent() {
 
     setSizes(newSize);
   }
-  function submitNewProduct() {
+
+  const submitForm: SubmitHandler<NewProductData> = () => {
+    handleModal(true);
+  };
+
+  const submitNewProduct: SubmitHandler<NewProductData> = (data: object) => {
     try {
       if (Object.keys({}).length) {
         handleError(true);
       }
-      const newProductObj = { ...inputForm, sizes: [...sizes] };
+      const newProductObj = { ...data, sizes: [...sizes] };
       const newListProduct = [...productList];
 
       newListProduct.push({
@@ -111,7 +119,7 @@ export default function FormComponent() {
           "Pre-washed & pre-shrunk",
           "Ultra-soft 100% cotton",
         ],
-        details: newProductObj.detail,
+        details: newProductObj.details,
         imageSrc:
           "https://tailwindui.com/img/ecommerce-images/product-page-02-tertiary-product-shot-02.jpg",
         imageAlt:
@@ -125,10 +133,10 @@ export default function FormComponent() {
 
       handleError(true);
     }
-  }
+  };
   return (
     <>
-      <form>
+      <form onSubmit={handleSubmit(submitForm)}>
         <div className="space-y-12">
           <div className="border-b border-gray-900/10 pb-12">
             <h2 className="text-base font-semibold leading-7 text-gray-900">
@@ -148,22 +156,31 @@ export default function FormComponent() {
                   Product Id
                 </label>
                 <div className="mt-2">
-                  <div className="flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 sm:max-w-md">
+                  <div className="flex rounded-md shadow-sm ring-1 ring-inset focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 sm:max-w-md">
                     <span className="flex select-none items-center pl-3 text-gray-500 sm:text-sm">
                       product/
                     </span>
                     <input
-                      value={inputForm.productId}
-                      onChange={(e) => {
-                        handleItemChange("productId", e);
-                      }}
                       type="text"
+                      {...register("productId", {
+                        required: "Product id is required",
+                      })}
                       name="productId"
                       id="productId"
                       autoComplete="productId"
-                      className="block flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
+                      className={
+                        "block flex-1 border bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6" +
+                        (errors.productId ? "border-red-500" : "")
+                      }
                       placeholder="Next id"
                     />
+                  </div>
+                  <div>
+                    {errors.productId && (
+                      <span className="text-red-500">
+                        {errors.productId.message}
+                      </span>
+                    )}
                   </div>
                 </div>
               </div>
@@ -178,14 +195,20 @@ export default function FormComponent() {
                 <div className="mt-2">
                   <textarea
                     id="description"
-                    name="description"
                     rows={3}
-                    value={inputForm.description}
-                    onChange={(e) => {
-                      handleItemChange("description", e);
-                    }}
-                    className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                    {...register("description", {
+                      required: "Description is required",
+                    })}
+                    name="description"
+                    className="block w-full rounded-md border py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                   />
+                  <div>
+                    {errors.description && (
+                      <span className="text-red-500">
+                        {errors.description.message}
+                      </span>
+                    )}
+                  </div>
                 </div>
                 <p className="mt-3 text-sm leading-6 text-gray-600">
                   Write a few sentences description your new product
@@ -200,15 +223,21 @@ export default function FormComponent() {
                 </label>
                 <div className="mt-2">
                   <textarea
+                    {...register("details", {
+                      required: "Detail is required",
+                    })}
                     id="details"
                     name="details"
                     rows={3}
-                    value={inputForm.detail}
-                    className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                    onChange={(e) => {
-                      handleItemChange("detail", e);
-                    }}
+                    className="block w-full rounded-md border py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                   />
+                  <div>
+                    {errors.details && (
+                      <span className="text-red-500">
+                        {errors.details.message}
+                      </span>
+                    )}
+                  </div>
                 </div>
                 <p className="mt-3 text-sm leading-6 text-gray-600">
                   Write a few sentences description your new product
@@ -298,16 +327,22 @@ export default function FormComponent() {
                 </label>
                 <div className="mt-2">
                   <input
-                    value={inputForm.name}
-                    onChange={(e) => {
-                      handleItemChange("name", e);
-                    }}
+                    {...register("name", {
+                      required: "Name is required",
+                    })}
                     type="text"
                     name="name"
                     id="name"
                     autoComplete="family-name"
-                    className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                    className="block w-full rounded-md border py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                   />
+                  <div>
+                    {errors.name && (
+                      <span className="text-red-500">
+                        {errors.name.message}
+                      </span>
+                    )}
+                  </div>
                 </div>
               </div>
 
@@ -320,16 +355,25 @@ export default function FormComponent() {
                 </label>
                 <div className="mt-2">
                   <input
-                    value={inputForm.price}
-                    onChange={(e) => {
-                      handleItemChange("price", e);
-                    }}
+                    {...register("price", {
+                      required: "Price is required",
+                    })}
                     type="text"
                     name="price"
                     id="price"
                     autoComplete="given-name"
-                    className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                    className={
+                      "block w-full rounded-md border py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" +
+                      (errors.price ? "border-red-500" : "")
+                    }
                   />
+                  <div>
+                    {errors.price && (
+                      <span className="text-red-500">
+                        {errors.price.message}
+                      </span>
+                    )}
+                  </div>
                 </div>
               </div>
             </div>
@@ -383,12 +427,12 @@ export default function FormComponent() {
           >
             Cancel
           </button>
-          <span
-            onClick={() => handleModal(true)}
+          <button
+            type="submit"
             className="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
           >
             Save
-          </span>
+          </button>
         </div>
       </form>
       <Modal
