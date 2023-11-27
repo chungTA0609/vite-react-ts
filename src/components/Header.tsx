@@ -8,7 +8,7 @@ import {
 } from "@heroicons/react/24/outline";
 
 import { change } from "../features/cart/cartSlice";
-import { useAppDispatch, useAppSelector } from "../app/hook";
+import { useAppDispatch, useAppSelector } from "../app/store/hook";
 import { Link } from "react-router-dom";
 const navigation = {
   categories: [
@@ -485,19 +485,25 @@ export default function Header() {
 
               <div className="ml-auto flex items-center">
                 <div className="hidden lg:flex lg:flex-1 lg:items-center lg:justify-end lg:space-x-6">
-                  <a
-                    href="#"
+                  <Link
+                    to={"login"}
                     className="text-sm font-medium text-gray-700 hover:text-gray-800"
                   >
                     Sign in
-                  </a>
+                  </Link>
                   <span className="h-6 w-px bg-gray-200" aria-hidden="true" />
-                  <a
-                    href="#"
+                  <Link
+                    to={"register"}
                     className="text-sm font-medium text-gray-700 hover:text-gray-800"
                   >
                     Create account
-                  </a>
+                  </Link>
+                  <Link
+                    to={"country-filter"}
+                    className="text-sm font-medium text-gray-700 hover:text-gray-800"
+                  >
+                    Search country
+                  </Link>
                 </div>
 
                 <div className="hidden lg:ml-8 lg:flex">

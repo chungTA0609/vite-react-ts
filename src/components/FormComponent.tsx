@@ -2,8 +2,9 @@ import { PhotoIcon } from "@heroicons/react/24/solid";
 import Modal from "./Modal";
 import { ChangeEvent, useState } from "react";
 import { addProduct } from "../features/product/productListSlice";
-import { useAppDispatch, useAppSelector } from "../app/hook";
+
 import { useNavigate } from "react-router-dom";
+import { useAppDispatch, useAppSelector } from "../app/store/hook";
 const sizeArray = [
   { name: "XXS", inStock: false },
   { name: "XS", inStock: false },

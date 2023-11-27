@@ -1,7 +1,7 @@
 import { Fragment } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import { XMarkIcon } from "@heroicons/react/24/outline";
-import { useAppDispatch, useAppSelector } from "../app/hook";
+
 import {
   change,
   updateCart,
@@ -10,6 +10,7 @@ import {
 } from "../features/cart/cartSlice";
 import { Link } from "react-router-dom";
 import { calculateSubtotal } from "../helpers/helpers";
+import { useAppDispatch, useAppSelector } from "../app/store/hook";
 
 export default function ShoppingCart() {
   const { open, cartProduct, subtotal } = useAppSelector((state) => state.cart);

@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { useAppSelector } from "../app/hook";
+import { useAppSelector } from "../app/store/hook";
 
 export default function ProductList() {
   const { productList } = useAppSelector((state) => state.productList);

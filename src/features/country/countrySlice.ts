@@ -1,7 +1,7 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import agent from "../../app/api/agent";
-import { SearchCountry } from "../../models/searchCountry";
 import { FieldValues } from "react-hook-form";
+import { SearchCountry } from "../../models/searchCountry";
+import agent from "../../app/api/agent";
 interface CountryState {
   countryList: Array<object>;
   searchCondition: SearchCountry | null;

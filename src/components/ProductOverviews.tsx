@@ -1,12 +1,17 @@
 import { useState } from "react";
 import { StarIcon } from "@heroicons/react/20/solid";
 import { RadioGroup } from "@headlessui/react";
-import { useAppDispatch, useAppSelector } from "../app/hook";
-import { updateCart, updateSubtotal, updateTotalItem } from "../features/cart/cartSlice";
+
+import {
+  updateCart,
+  updateSubtotal,
+  updateTotalItem,
+} from "../features/cart/cartSlice";
 import { Link, useNavigate } from "react-router-dom";
 import { addProduct } from "../features/product/productListSlice";
 import Modal from "./Modal";
 import { calculateSubtotal } from "../helpers/helpers";
+import { useAppDispatch, useAppSelector } from "../app/store/hook";
 const reviews = { href: "#", average: 4, totalCount: 117 };
 
 function classNames(...classes: Array<string>) {

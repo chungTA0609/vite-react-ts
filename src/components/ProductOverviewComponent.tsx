@@ -1,4 +1,4 @@
-import { useAppSelector } from "../app/hook";
+import { useAppSelector } from "../app/store/hook";
 import ProductOverviews from "./ProductOverviews";
 import { useParams } from "react-router-dom";
 
