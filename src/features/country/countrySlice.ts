@@ -27,8 +27,6 @@ export const getCountryByCategory = createAsyncThunk<
   FieldValues
 >("country/getCountryByCategory", async (data, thunkAPI) => {
   try {
-    console.log(data);
-
     const countryList = await agent.Country.getCountryByCategory(data);
 
     return countryList;

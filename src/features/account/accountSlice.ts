@@ -14,7 +14,6 @@ export const signInUser = createAsyncThunk<User, FieldValues>(
   "account/signInUser",
   async (data, thunkAPI) => {
     try {
-      console.log(data);
       const userDto = await agent.Account.login(data);
 
       localStorage.setItem("user", JSON.stringify(userDto));

@@ -34,14 +34,9 @@ export default function FormComponent() {
   const {
     register,
     handleSubmit,
-    formState: { errors, touchedFields },
+    formState: { errors },
   } = useForm<NewProductData>();
 
-  useEffect(() => {
-    console.log();
-    console.log(touchedFields, "touch");
-    console.log(errors, "error");
-  }, [touchedFields, errors]);
   function handleModal(openState: boolean) {
     setOpen(openState);
     if (!openState) {
