@@ -10,7 +10,7 @@ import {
 import { Link, useNavigate } from "react-router-dom";
 import { addProduct } from "../features/product/productListSlice";
 import Modal from "./Modal";
-import { calculateSubtotal } from "../helpers/helpers";
+import calculateSubtotal from "../helpers/helpers";
 import { useAppDispatch, useAppSelector } from "../app/store/hook";
 const reviews = { href: "#", average: 4, totalCount: 117 };
 

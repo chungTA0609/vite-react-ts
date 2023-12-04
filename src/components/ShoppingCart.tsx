@@ -9,7 +9,7 @@ import {
   updateTotalItem,
 } from "../features/cart/cartSlice";
 import { Link } from "react-router-dom";
-import { calculateSubtotal } from "../helpers/helpers";
+import calculateSubtotal from "../helpers/helpers";
 import { useAppDispatch, useAppSelector } from "../app/store/hook";
 
 export default function ShoppingCart() {

@@ -1,4 +1,4 @@
-export function calculateSubtotal(arrObj: Array<object>) {
+const calculateSubtotal = (arrObj: Array<object>) => {
   const initialValue = 0;
   const subtotal = arrObj.reduce(
     (accumulator, currentValue) =>
@@ -7,4 +7,5 @@ export function calculateSubtotal(arrObj: Array<object>) {
     initialValue
   );
   return subtotal;
-}
+};
+export default calculateSubtotal;
