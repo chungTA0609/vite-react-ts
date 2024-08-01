@@ -1,0 +1,72 @@
+Tags	Question
+HTML	Responsive web design là gì?
+HTML	Để web có thể responsive chúng ta cần setting gì?
+HTML	Phân biệt giữa thẻ <div> và thẻ <span>?
+HTML	Khi nào dùng thẻ <span> và khi nào dùng thẻ <p>?
+HTML	Thẻ <strong> và thẻ <b> có gì khác nhau?
+HTML	Khi nào dùng thẻ header, footer, nav, asign, main, section, div
+HTML	Các cách tối ưu Optimizing Website Speed trong  website
+HTML	Pseudo element sử dụng để làm gì?
+CSS	Làm thế nào để sử dụng pseudo class?
+CSS	Kể tên 1 số CSS Selectors bạn biết và sử dụng để selector chọn element như thế nào?
+CSS	Độ ưu tiên của CSS Selectors là gì
+CSS	Phân biệt giữa position static, position sticky, position fixed và position absolute?
+CSS	Phân biệt giữa display flex và display grid?
+CSS	gap với padding, margin khác gì nhau
+CSS	Phân biệt giữa transition và animation?
+JS	Khi nào thì sử dụng Function và Arrow Function?
+JS	Làm thế nào để biết kiểu của một giá trị trong JS?
+JS	Phân biệt giữa for, forEach và map?
+JS	For và While và Do While khác gì nhau
+JS	For in và For of khác gì nhau?
+JS	For, forEach và map cái nào dùng được với async/await?
+JS	Phân biệt giữa find và filter trong array?
+JS	Kết quả của reduce() function trong array là gì?
+JS	This là gì
+JS	Khi nào sử dụng call, bind, apply
+JS	typeof và intanceof khác gì nhau
+JS	hoisting là gì
+JS	const vs let vs var
+JS	stack là gì
+JS	OOP là gì, dùng như thế nào
+JS	Prototype và new khác gì nhau
+JS	có bao nhiêu loại scope trong JS
+JS	lexical scope hoạt động như thế nào?
+JS	Có bao nhiêu kiểu dữ liệu trong JS
+JS	Có bao nhiêu loại function, kể tên
+JS	Thế nào là đệ quy function
+JS	Thế nào là callback function
+JS	Phân biệt giữa setTimeout() và setInterval()
+JS	Promise dùng để làm gì?
+JS	Phân biệt giữa Promise và PromiseAll?
+JS	Async/Await dùng để làm gì?
+JS	Khi nào thì dùng Async/Await?
+Typescript	có bao nhiêu loại Type trong typescript?.
+Typescript	Type và interface khác gì nhau
+Typescript	Làm thế nào để lấy type trả về của 1 function
+Typescript	Union type là gì
+Typescript	asserts function dùng để làm gì
+Typescript	Phân biệt giữa abstract và interface trong typescript?
+ReactJS	ReactJS Framework có những ưu điểm gì?
+ReactJS	Virtual DOM là gì?
+ReactJS	Component trong React là gì?
+ReactJS	Hàm render() trong React dùng để làm gì?
+ReactJS	State trong React là gì?
+ReactJS	Props trong React là gì?
+ReactJS	Làm thế nào để truyền props giữa các components?
+ReactJS	Consumer vs useContext
+ReactJS	Điểm khác nhau giữa State và Props?
+ReactJS	Higher-order component (HOC) trong React là gì?
+ReactJS	Phân biệt giữa Class components và Functional components?
+ReactJS	Làm thế nào tạo được Flexible (Dynamic) components
+ReactJS	Lifecycle trong ReactJS là như thế nào?
+ReactJS	Khi nào sử dụng Redux?
+ReactJS	Redux vs Session Storage vs LocalStoragge
+ReactJS	Redux Saga là gì?
+ReactJS	Trong Saga, watchers và workers khác gì nhau
+ReactJS	Phân biệt giữa Redux và Context API?
+ReactJS	Phân biệt React routing và Conventional Routing?
+ReactJS	Phân biệt SPA vs MPA
+ReactJS	Tại sao khi sử dụng CSS Style inline phải truyền value theo object mà không truyền cả object?
+ReactJS	Yield trong Saga và JS khác gì nhau
+JS	Yield và Async/Await khác gì nhau
